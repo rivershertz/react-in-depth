@@ -1,5 +1,6 @@
+import {Header} from './Header';
 function App() {
-  return <h1>WOOHOO</h1>;
+  return <Header />;
 }
 
 export default App;

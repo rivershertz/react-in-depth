@@ -8,9 +8,9 @@ react creates a structure that defines UI.
 UI - user interface
 GUI - graphical user interface
 
-the output of react is an object that is structured using specific keywords based on the target motivation (website, IOT, terminal...)
+the output of react is an object that is structured using specific keywords based on the target environment (website, IOT, terminal...)
 
-`createElement()` - a function that takes `type, props, children` and returns an object with the parameters. The reason it is a function and not just a straight up object is for calling the elements whenever we need and rebuild the structure.
+`createElement()` - a function that takes `type, props, children` and returns an object with the parameters passed. The reason it is a function and not just a straight up object is for us to call the elements (functions) whenever we need and rebuild the structure.
 
 `renderElement()` (react-dom) - iterates through the object created by `createElement()` and uses DOM APIs to create DOM nodes by the structure provided.
 
