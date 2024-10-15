@@ -1,6 +1,11 @@
-import {useState} from 'react';
+import PropTypes from 'prop-types';
+import {useRef} from '../utils';
+
+Header.propTypes = {
+  addTodo: PropTypes.func,
+};
 export function Header(props) {
-  const input = useState({current: ''})[0];
+  const input = useRef('');
   return (
     <header className="header">
       <h1>todos</h1>

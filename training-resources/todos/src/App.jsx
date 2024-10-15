@@ -6,10 +6,6 @@ import {Main} from './components/Main';
 function App() {
   const [todos, setTodos] = useState([]);
 
-  function clearCompleted() {
-    const incompleteTodos = todos.filter((todo) => !todo.isCompleted);
-    setTodos(incompleteTodos);
-  }
   function addTodo(e, newTodo) {
     if (e.key === 'Enter') {
       setTodos([
@@ -17,6 +13,11 @@ function App() {
         {name: newTodo, isCompleted: false, id: Math.random()},
       ]);
     }
+  }
+
+  function removeTodo(id) {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   }
 
   function markCompleted(id) {
@@ -30,9 +31,9 @@ function App() {
     setTodos([...updatedTodos]);
   }
 
-  function removeTodo(id) {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
+  function clearCompleted() {
+    const incompleteTodos = todos.filter((todo) => !todo.isCompleted);
+    setTodos(incompleteTodos);
   }
   return (
     <section className="todoapp">

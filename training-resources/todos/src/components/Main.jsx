@@ -1,3 +1,11 @@
+import PropTypes from 'prop-types';
+
+Main.propTypes = {
+  todos: PropTypes.array,
+  markCompleted: PropTypes.func,
+  removeTodo: PropTypes.func,
+};
+
 export function Main(props) {
   return (
     <section className="main">
