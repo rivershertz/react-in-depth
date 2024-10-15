@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import {TodoItem} from './TodoItem';
 
 Main.propTypes = {
   todos: PropTypes.array,
   markCompleted: PropTypes.func,
   removeTodo: PropTypes.func,
+  changeTodoName: PropTypes.func,
 };
 
 export function Main(props) {
@@ -15,23 +17,11 @@ export function Main(props) {
       />
       <ul className="todo-list">
         {props.todos.map((todo) => (
-          <li
+          <TodoItem
             key={todo.id}
-            className={todo.isCompleted ? 'completed' : ''}>
-            <div className="view">
-              <input
-                className="toggle"
-                type="checkbox"
-                onChange={() => props.markCompleted(todo.id)}
-              />
-              <label>{todo.name}</label>
-              <button
-                className="destroy"
-                onClick={() => props.removeTodo(todo.id)}
-              />
-            </div>
-            <input className="edit" />
-          </li>
+            todo={todo}
+            changeTodoName={props.changeTodoName}
+          />
         ))}
       </ul>
     </section>
