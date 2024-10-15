@@ -18,10 +18,27 @@ function App() {
       ]);
     }
   }
+
+  function markCompleted(e) {
+    const changedTodoId = +e.target.value;
+    const [todo] = todos.filter((todo) => {
+      return todo.id === changedTodoId;
+    });
+
+    const updatedTodos = todos.filter((todo) => todo.id !== changedTodoId);
+
+    setTodos([
+      ...updatedTodos,
+      {id: todo.id, name: todo.name, isCompleted: !todo.isCompleted},
+    ]);
+  }
   return (
     <section className="todoapp">
       <Header addTodo={addTodo} />
-      <Main todos={todos} />
+      <Main
+        todos={todos}
+        markCompleted={markCompleted}
+      />
       <Footer
         todos={todos}
         clearCompleted={clearCompleted}
