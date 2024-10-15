@@ -1,7 +1,4 @@
-import {useState} from 'react';
-
 export function Main(props) {
-  const checkbox = useState({current: false})[0];
   return (
     <section className="main">
       <input
@@ -17,12 +14,13 @@ export function Main(props) {
               <input
                 className="toggle"
                 type="checkbox"
-                onChange={props.markCompleted}
-                value={todo.id}
-                ref={checkbox}
+                onChange={() => props.markCompleted(todo.id)}
               />
               <label>{todo.name}</label>
-              <button className="destroy" />
+              <button
+                className="destroy"
+                onClick={() => props.removeTodo(todo.id)}
+              />
             </div>
             <input className="edit" />
           </li>

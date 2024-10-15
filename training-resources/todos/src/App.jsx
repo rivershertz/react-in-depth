@@ -19,18 +19,20 @@ function App() {
     }
   }
 
-  function markCompleted(e) {
-    const changedTodoId = +e.target.value;
-    const [todo] = todos.filter((todo) => {
-      return todo.id === changedTodoId;
+  function markCompleted(id) {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id !== id) {
+        return todo;
+      }
+      return {id: todo.id, name: todo.name, isCompleted: !todo.isCompleted};
     });
 
-    const updatedTodos = todos.filter((todo) => todo.id !== changedTodoId);
+    setTodos([...updatedTodos]);
+  }
 
-    setTodos([
-      ...updatedTodos,
-      {id: todo.id, name: todo.name, isCompleted: !todo.isCompleted},
-    ]);
+  function removeTodo(id) {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   }
   return (
     <section className="todoapp">
@@ -38,6 +40,7 @@ function App() {
       <Main
         todos={todos}
         markCompleted={markCompleted}
+        removeTodo={removeTodo}
       />
       <Footer
         todos={todos}
