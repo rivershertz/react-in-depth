@@ -11,6 +11,8 @@ TodoItem.propTypes = {
 export function TodoItem(props) {
   const todoName = useRef(props.todo.name);
   const todoItem = useRef({});
+  const view = useRef({});
+  const checkbox = useRef({});
   function handleInput(e) {
     if (e.key === 'Enter') {
       props.changeTodoName(props.todo.id, todoName.current.value);
@@ -19,9 +21,13 @@ export function TodoItem(props) {
     }
   }
 
-  function editTodoName() {
-    todoItem.current.classList.add('editing');
-    todoName.current.focus();
+  function editTodoName(e) {
+    const shouldAllowEdit =
+      view.current.contains(e.target) && e.target !== checkbox.current;
+    if (shouldAllowEdit) {
+      todoItem.current.classList.add('editing');
+      todoName.current.focus();
+    }
   }
 
   return (
@@ -31,11 +37,13 @@ export function TodoItem(props) {
       ref={todoItem}>
       <div
         className="view"
-        onClick={editTodoName}>
+        onClick={(e) => editTodoName(e)}
+        ref={view}>
         <input
           className="toggle"
           type="checkbox"
           onChange={() => props.markCompleted(props.todo.id)}
+          ref={checkbox}
         />
         <label>{props.todo.name}</label>
         <button

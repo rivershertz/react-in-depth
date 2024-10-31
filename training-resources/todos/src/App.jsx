@@ -6,13 +6,11 @@ import {Main} from './components/Main';
 function App() {
   const [todos, setTodos] = useState([]);
 
-  function addTodo(e, newTodo) {
-    if (e.key === 'Enter') {
-      setTodos([
-        ...todos,
-        {name: newTodo, isCompleted: false, id: Math.random()},
-      ]);
-    }
+  function addTodo(newTodo) {
+    setTodos([
+      ...todos,
+      {name: newTodo, isCompleted: false, id: Math.random()},
+    ]);
   }
 
   function removeTodo(id) {
@@ -27,7 +25,6 @@ function App() {
       }
       return {id: todo.id, name: todo.name, isCompleted: !todo.isCompleted};
     });
-
     setTodos(updatedTodos);
   }
 

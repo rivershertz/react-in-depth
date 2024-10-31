@@ -21,6 +21,8 @@ export function Main(props) {
             key={todo.id}
             todo={todo}
             changeTodoName={props.changeTodoName}
+            markCompleted={props.markCompleted}
+            removeTodo={props.removeTodo}
           />
         ))}
       </ul>

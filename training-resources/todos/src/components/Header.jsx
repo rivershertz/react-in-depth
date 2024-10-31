@@ -5,6 +5,12 @@ Header.propTypes = {
   addTodo: PropTypes.func,
 };
 export function Header(props) {
+  function handleClick(e) {
+    if (e.key === 'Enter') {
+      props?.addTodo?.(input.current.value);
+      input.current.value = '';
+    }
+  }
   const input = useRef('');
   return (
     <header className="header">
@@ -14,7 +20,7 @@ export function Header(props) {
         placeholder="What needs to be done?"
         autoFocus
         ref={input}
-        onKeyDown={(e) => props?.addTodo?.(e, input.current.value)}
+        onKeyDown={(e) => handleClick(e)}
       />
     </header>
   );
